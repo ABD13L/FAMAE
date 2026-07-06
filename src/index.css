@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", var(--font-sans);
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Base custom ambient glows */
+.glow-effect {
+  position: relative;
+}
+.glow-effect::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0.05), rgba(255,255,255,0.1));
+  border-radius: inherit;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes custom-twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.95) translate3d(0, 0, 0);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.05) translate3d(0, 0, 0);
+  }
+}
+
+.animate-twinkle {
+  animation: custom-twinkle var(--twinkle-duration, 4s) ease-in-out infinite;
+  animation-delay: var(--twinkle-delay, 0s);
+  will-change: transform, opacity;
+}
+
+/* --- Glitch Intro Screen Custom Animations --- */
+
+/* Chromatic Aberration Text shadow for letters contour */
+.famae-glitch-text {
+  position: relative;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  text-shadow: 
+    -2px -1px 0px rgba(0, 240, 255, 0.7),
+    2px 1.5px 0px rgba(255, 0, 128, 0.7),
+    0px -2px 0px rgba(255, 235, 59, 0.5);
+  animation: txt-jitter 4s infinite linear alternate-reverse;
+}
+
+@keyframes txt-jitter {
+  0%, 100% {
+    text-shadow: 
+      -1px -1.5px 0px rgba(0, 240, 255, 0.75),
+      1.5px 1px 0px rgba(255, 0, 128, 0.75),
+      0px -1px 0px rgba(255, 235, 59, 0.5);
+  }
+  15% {
+    text-shadow: 
+      -2px 1.5px 0px rgba(0, 240, 255, 0.8),
+      -1.5px -1px 0px rgba(255, 0, 128, 0.8),
+      1px 1px 0px rgba(255, 235, 59, 0.6);
+  }
+  30% {
+    text-shadow: 
+      1.5px -1px 0px rgba(0, 240, 255, 0.7),
+      2px 1px 0px rgba(255, 0, 128, 0.8),
+      -1.5px 1.5px 0px rgba(255, 235, 59, 0.5);
+  }
+  45% {
+    text-shadow: 
+      -1px 1.5px 0px rgba(0, 240, 255, 0.85),
+      1px -2px 0px rgba(255, 0, 128, 0.75),
+      2px -1px 0px rgba(255, 235, 59, 0.65);
+  }
+  60% {
+    text-shadow: 
+      -1.5px -1px 0px rgba(0, 240, 255, 0.75),
+      2px 1px 0px rgba(255, 0, 128, 0.8),
+      -1px -1.5px 0px rgba(255, 235, 59, 0.5);
+  }
+  75% {
+    text-shadow: 
+      2px 1.5px 0px rgba(0, 240, 255, 0.8),
+      -1px -1.5px 0px rgba(255, 0, 128, 0.7),
+      1.5px 1px 0px rgba(255, 235, 59, 0.6);
+  }
+}
+
+/* Digital Typewriter blinking cursor */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.animate-cursor {
+  animation: cursor-blink 0.8s infinite;
+}
+
+/* Glitch color stripes horizontal shift backgrounds */
+@keyframes shift-bar-1 {
+  0%, 100% { transform: translateY(0) scaleY(1); opacity: 0.15; }
+  20% { transform: translateY(5%) scaleY(1.5); opacity: 0.3; }
+  40% { transform: translateY(-10%) scaleY(0.8); opacity: 0.1; }
+  65% { transform: translateY(12%) scaleY(1.2); opacity: 0.25; }
+  85% { transform: translateY(-3%) scaleY(2); opacity: 0.2; }
+}
+
+@keyframes shift-bar-2 {
+  0%, 100% { transform: translateY(0) scaleY(1); opacity: 0.12; }
+  15% { transform: translateY(-15%) scaleY(2); opacity: 0.25; }
+  35% { transform: translateY(8%) scaleY(0.7); opacity: 0.15; }
+  55% { transform: translateY(-5%) scaleY(1.4); opacity: 0.3; }
+  80% { transform: translateY(18%) scaleY(1.1); opacity: 0.2; }
+}
+
+@keyframes shift-bar-3 {
+  0%, 100% { transform: translateY(0) scaleY(1); opacity: 0.1; }
+  25% { transform: translateY(20%) scaleY(1.1); opacity: 0.3; }
+  50% { transform: translateY(-12%) scaleY(1.8); opacity: 0.15; }
+  70% { transform: translateY(3%) scaleY(0.9); opacity: 0.25; }
+  90% { transform: translateY(-18%) scaleY(1.4); opacity: 0.2; }
+}
+
+.animate-shift-1 {
+  animation: shift-bar-1 6s infinite ease-in-out;
+}
+
+.animate-shift-2 {
+  animation: shift-bar-2 4.5s infinite ease-in-out;
+}
+
+.animate-shift-3 {
+  animation: shift-bar-3 7.5s infinite ease-in-out;
+}
+
+/* Subtle CRT line sweep */
+@keyframes crt-sweep {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.animate-crt-sweep {
+  animation: crt-sweep 8s infinite linear;
+}
+
+
+

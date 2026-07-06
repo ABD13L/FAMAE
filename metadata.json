@@ -1,0 +1,6 @@
+{
+  "name": "FAMAE",
+  "description": "Prototipo interactivo minimalista y estético para FAMAE, con secciones académicas, integrantes y un fondo de estrellas animadas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
